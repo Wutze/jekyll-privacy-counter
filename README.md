@@ -7,6 +7,8 @@
 [![No Cookies](https://img.shields.io/badge/Cookies-None-orange)](#)
 [![Zero Tracking](https://img.shields.io/badge/Tracking-Zero-critical)](#)
 
+[English translation](README_EN.md)
+
 ---
 Ein minimalistischer, **datenschutzfreundlicher Besucherzähler** für **Jekyll**,  
 ganz ohne Cookies, externe Tracker oder JavaScript-Abhängigkeiten.  
