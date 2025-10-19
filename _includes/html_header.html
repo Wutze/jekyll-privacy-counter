@@ -1,0 +1,11 @@
+<!--
+Ich spare alle anderen HTML Header Angaben aus, das würde zuviel.
+Diese eine Zeile kann jeder für sich verändern
+
+
+-->
+
+
+{% if jekyll.environment == "production" %}
+<link rel="stylesheet" href="https://[Deine Webseiten URL]/zaehler.php?page={{ page.title | uri_escape }}">
+{% endif %}

@@ -1,0 +1,56 @@
+
+<div id="viewsTableContainer" style="margin-top:2em;"></div>
+
+<script>
+async function renderViewsTable() {
+  const container = document.getElementById('viewsTableContainer');
+
+  try {
+    const response = await fetch('https://tools.home/logger/api.php');
+    const json = await response.json();
+
+    if (!json.data || json.data.length === 0) {
+      container.innerHTML = '<p>Keine Daten vorhanden.</p>';
+      return;
+    }
+
+    // Tabelle bauen
+    const table = document.createElement('table');
+    table.style.borderCollapse = 'collapse';
+    table.style.width = '100%';
+    table.style.marginTop = '1em';
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th style="border:1px solid #ccc; padding:4px;">Seite / Beitrag</th>
+          <th style="border:1px solid #ccc; padding:4px;">Aufrufe</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    `;
+
+    const tbody = table.querySelector('tbody');
+
+    // Daten sortieren nach Aufrufen absteigend
+    const sortedData = json.data.sort((a, b) => b.count - a.count);
+
+    sortedData.forEach(entry => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="border:1px solid #ccc; padding:4px;">${entry.page || '(leer)'}</td>
+        <td style="border:1px solid #ccc; padding:4px; text-align:right;">${entry.count}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    container.appendChild(table);
+  } catch (err) {
+    console.error('Fehler beim Laden der Views-Daten:', err);
+    container.innerHTML = '<p>Daten konnten nicht geladen werden.</p>';
+  }
+}
+
+// Tabelle rendern
+renderViewsTable();
+</script>

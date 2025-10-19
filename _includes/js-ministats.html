@@ -1,0 +1,23 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Alle LED-Elemente auswählen
+  const leds = document.querySelectorAll(".views");
+
+  leds.forEach(el => {
+    // Seitentitel aus data-page holen
+    const page = encodeURIComponent(el.dataset.page.trim());
+
+    // API aufrufen
+    fetch(`https://tools.home/logger/api.php?page=${page}`)
+      .then(res => res.json())
+      .then(data => {
+        // passenden Eintrag im JSON suchen
+        const entry = data.data.find(d => d.page === decodeURIComponent(page));
+        if (entry) {
+          el.textContent = `${entry.count}`;
+        }
+      })
+      .catch(err => console.warn("Zähler konnte nicht geladen werden:", err));
+  });
+});
+</script>

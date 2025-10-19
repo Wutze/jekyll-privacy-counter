@@ -1,0 +1,11 @@
+<!--
+Ich habe eine zusätzliche Webseite angelegt, die nur dann geladen wird, wenn der Dvelopment mode gestartet ist.
+
+Das kann nicht in der _data/menu.yml eingefügt werden, aus der heraus meine verlinkten Seiten generiert werden.
+Meine statischen Webseiten (Impressum usw.) liegen alle im Ordner "_seiten"
+-->
+
+
+        {% if jekyll.environment != "production" %}
+          <li class="nav-item"><a class="nav-link dev" href="/stats/">Statistik</a></li>
+        {% endif %}

@@ -1,0 +1,22 @@
+.dev{
+  color: #ff00dd;
+  background-color: #ffffff;
+  padding-left: 15px;
+  font-size: small;
+  border: #ff00dd solid 1px;
+}
+
+.mini-led-green {
+    background-color: #80FF00;
+    box-shadow: #7D7B80 0 -1px 6px 1px, inset #460 0 -1px 8px, #80FF00 0 3px 11px;
+}
+.mini-led-red{
+    background-color: #F00;
+    box-shadow: #7D7B80 0 -1px 6px 1px, inset #600 0 -1px 8px, #F00 0 3px 11px;
+}
+
+.mini-led-green, .mini-led-red{
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #111;
+}

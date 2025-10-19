@@ -1,0 +1,51 @@
+---
+layout: start
+image: assets/images/bg.jpeg
+pagination: 
+  enabled: true
+---
+
+<h1>Neueste Beiträge</h1>
+<ul class="preview">
+  {% for post in paginator.posts %}
+    <li class="preview">
+      <a title="{{ post.title }}" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <br>
+      <span class="author">
+      {{ post.date | date: "%d.%m.%Y" }} // {% if post.author %} {{ post.author }} {% endif %}
+      <!-- Start Logview-->
+      {% if jekyll.environment != "production" %}
+        {% if post.published == false %}
+          <span class="mini-led-red views" data-page="{{ post.title | escape }}">&nbsp;</span>
+        {% else %}
+          <span class="mini-led-green views" data-page="{{ post.title | escape }}">&nbsp;</span>
+        {% endif %}
+      {% endif %}
+      <!-- End Logview -->
+      </span>
+      <p class="preview">
+        {{ post.content | strip_html | strip_newlines | split: ' ' | slice: 0,15 | join: ' ' }} …
+        <a href="{{ post.url | relative_url }}">Weiterlesen</a>
+      </p>
+    </li>
+  {% endfor %}
+</ul>
+<nav class="pagination">
+  {% if paginator.previous_page %}
+    <a class="prev" title="Jüngere Beiträge" href="{{ paginator.previous_page_path | relative_url }}">&laquo; Jüngere Beiträge</a>&nbsp; 
+  {% endif %}
+
+  {% if paginator.next_page %}
+    <a class="next" title="Ältere Beiträge" href="{{ paginator.next_page_path | relative_url }}">Ältere Beiträge &raquo;</a>
+  {% endif %}
+</nav>
+<!-- das lädt das JavaScript, welches im Ordner _include liegen soll
+Dieses Script bezieht die Daten aus der persönlichen Datenbank und füllt die Werte automatisch aus.
+class="views"  ist hier der entscheidende Punkt, welcher befüllt wird.
+
+Der besseren Übersicht wegen habe ich die (meine) komplette Startseite hier veröffentlicht.
+So könnt ihr sehen was angepasst werden muss
+-->
+{% if jekyll.environment != "production" %}
+{% include js-ministat.html %}
+{% endif %}
