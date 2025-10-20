@@ -5,13 +5,19 @@
  * auf https://tools.home/logger/api.php?page=Konservativ%20-%20Mindesthaltbarkeit%20-%20bis%20gestern. 
  * (Grund: CORS-Kopfzeile 'Access-Control-Allow-Origin' stimmt nicht mit 'https://tools.home' überein)
  * 
+ * Nachfolgend der Aufruf im Webbrowser der Jekyll-Testumgebung
+ * Die IP wird bei jedem anders aussehen
  * http://172.16.16.147:4000/
+ * 
+ * Der Scriptfehler, wie oben beschrieben, passiert wenn normales HTTP und HTTPS gemischt werden
+ * Da meine gesamte Entwicklungsumgebung mit HTTPS läuft, alle JavaScript- und CSS-Bibilotheken zentral
+ * verwaltet werden, sind die ersten 3 Headerangaben im PHP Script notwendig.
  * 
  * 
  */
 
 
-//header("Access-Control-Allow-Origin: *"); // erlaubt alle Domains
+//header("Access-Control-Allow-Origin: *"); // allow all Domains
 header("Access-Control-Allow-Origin: https://tools.home");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -19,7 +25,6 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, no-cache, must-revalidate');
-//header('Access-Control-Allow-Origin: *'); // Optional: falls du von extern abrufst
 
 
 $dbFile = __DIR__ . '/tracker.sqlite';
