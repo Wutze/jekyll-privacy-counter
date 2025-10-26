@@ -9,7 +9,8 @@ GIT_REPO="http://gitlab1.home/micro/361neu"
 echo "🚀 Starte lokale Testumgebung (mit Drafts und Livereload)..."
 cd "$SRC"
 
-bundle exec jekyll serve --unpublished --drafts --livereload
+#bundle exec jekyll serve --unpublished --drafts --livereload
+JEKYLL_ENV=development bundle exec jekyll serve --future --unpublished --drafts --livereload
 SERVE_EXIT_CODE=$?
 
 cd ..
